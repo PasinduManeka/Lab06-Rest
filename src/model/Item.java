@@ -36,7 +36,7 @@ public class Item {
 				return "Error while connecting to the database for inserting."; 
 			}
 			// create a prepared statement
-			String query = " insert into items(`itemID`,`itemCode`,`itemName`,`itemPrice`,`itemDesc`)"
+			String query = " insert into item(`itemID`,`itemCode`,`itemName`,`itemPrice`,`itemDesc`)"
 					+ " values (?, ?, ?, ?, ?)";
 			
 			PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -78,7 +78,7 @@ public class Item {
 					"<th>Item Description</th>" +
 					"<th>Update</th><th>Remove</th></tr>";
 
-			String query = "select * from items";
+			String query = "select * from item";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			// iterate through the rows in the result set
