@@ -27,6 +27,10 @@ public class Item {
 
 	public String insertItem(String code, String name, String price, String desc)
 	 {
+		System.out.println(code);
+		System.out.println(name);
+		System.out.println(price);
+		System.out.println(desc);
 		String output = "";
 		try
 		{
@@ -35,28 +39,29 @@ public class Item {
 			{
 				return "Error while connecting to the database for inserting."; 
 			}
+			
 			// create a prepared statement
-			String query = " insert into item(`itemID`,`itemCode`,`itemName`,`itemPrice`,`itemDesc`)"
-					+ " values (?, ?, ?, ?, ?)";
+			String query = " insert into item (itemCode,itemName,itemPrice,itemDesc) values(?,?,?,?)";
 			
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			
 			// binding values
-			preparedStmt.setInt(1, 0);
-			preparedStmt.setString(2, code);
-			preparedStmt.setString(3, name);
-			preparedStmt.setDouble(4, Double.parseDouble(price));
-			preparedStmt.setString(5, desc);
+			//preparedStmt.setInt(1, 0);
+			preparedStmt.setString(1, code);
+			preparedStmt.setString(2, name);
+			preparedStmt.setDouble(3, Float.parseFloat(price));
+			preparedStmt.setString(4, desc);
 			// execute the statement
 	
-			preparedStmt.execute();
-			con.close();
+			preparedStmt.executeUpdate();
+			con.setAutoCommit(false);
+			con.commit();
 			output = "Inserted successfully";
 		}
 		catch (Exception e)
 		{
 			output = "Error while inserting the item.";
-			System.err.println(e.getMessage());
+			System.err.println(e);
 		}
 		return output;
 	 }
@@ -73,7 +78,7 @@ public class Item {
 				return "Error while connecting to the database for reading."; 
 			}
 			// Prepare the html table to be displayed
-			output = "<table border='1'><tr><th>Item Code</th><th>Item Name</th>" +
+			output = "<table border='1'><tr><th>itemID</th><th>Item Code</th><th>Item Name</th>" +
 					"<th>Item Price</th>" +
 					"<th>Item Description</th>" +
 					"<th>Update</th><th>Remove</th></tr>";
@@ -90,7 +95,8 @@ public class Item {
 				String itemPrice = Double.toString(rs.getDouble("itemPrice"));
 				String itemDesc = rs.getString("itemDesc");
 				// Add into the html table
-				output += "<tr><td>" + itemCode + "</td>";
+				output +="<tr><td>"+itemID+"</td>";
+				output += "<td>" + itemCode + "</td>";
 				output += "<td>" + itemName + "</td>";
 				output += "<td>" + itemPrice + "</td>";
 				output += "<td>" + itemDesc + "</td>";
