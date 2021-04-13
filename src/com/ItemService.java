@@ -5,10 +5,14 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import model.Item;
 
@@ -38,6 +42,26 @@ public class ItemService
 		String output = itemObj.insertItem(code, name, price, desc);
 		return output;
 	}
+	
+	@PUT
+	@Path("/update")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updateItem(String itemData) {
+		JsonObject itemObject =new JsonParser().parse(itemData).getAsJsonObject();
+		
+		String itemID = itemObject.get("itemID").getAsString();
+		String itemCode = itemObject.get("itemCode").getAsString();
+		String itemName = itemObject.get("itemName").getAsString();
+		String itemPrice = itemObject.get("itemPrice").getAsString();
+		String itemDesc = itemObject.get("itemDesc").getAsString();
+		
+		String output = itemObj.updateItem(itemID, itemCode, itemName, itemPrice, itemDesc);
+		return output;
+		
+		
+	}
+	
 	
 	
 	
