@@ -1,7 +1,7 @@
 package com;
 
-import javax.ws.rs.Consumes; 
-
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -10,6 +10,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.parser.Parser;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -59,7 +63,20 @@ public class ItemService
 		String output = itemObj.updateItem(itemID, itemCode, itemName, itemPrice, itemDesc);
 		return output;
 		
+	}
+	
+	@DELETE
+	@Path("/delete")
+	@Consumes(MediaType.APPLICATION_XML)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String delete(String itemData) {
 		
+		Document doc = Jsoup.parse(itemData, "", Parser.xmlParser());
+		
+		String itemID = doc.select("itemID").text();
+		
+		String output = itemObj.deleteItem(itemID);
+		return output;
 	}
 	
 	
