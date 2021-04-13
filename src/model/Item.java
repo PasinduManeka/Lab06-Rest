@@ -143,6 +143,7 @@ public class Item {
 			// execute the statement
 			preparedStmt.executeUpdate();
 			con.setAutoCommit(false);
+			con.commit();
 			output = "Updated successfully";
 		}
 		catch (Exception e)
@@ -165,13 +166,14 @@ public class Item {
 				return "Error while connecting to the database for deleting."; 
 			}
 			// create a prepared statement
-			String query = "delete from items where itemID=?";
+			String query = "delete from item where itemID=?";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding values
 			preparedStmt.setInt(1, Integer.parseInt(itemID));
 			// execute the statement
-			preparedStmt.execute();
-			con.close();
+			preparedStmt.executeUpdate();
+			con.setAutoCommit(false);
+			con.commit();
 			output = "Deleted successfully";
 		}
 		catch (Exception e)
