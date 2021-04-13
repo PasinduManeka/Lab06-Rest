@@ -132,17 +132,17 @@ public class Item {
 				return "Error while connecting to the database for updating."; 
 			}
 			// create a prepared statement
-			String query = "UPDATE items SET itemCode=?,itemName=?,itemPrice=?,itemDesc=? WHERE itemID=?";
+			String query = "UPDATE item SET itemCode=?,itemName=?,itemPrice=?,itemDesc=? WHERE itemID=?";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
 			// binding values
 			preparedStmt.setString(1, code);
 			preparedStmt.setString(2, name);
-			preparedStmt.setDouble(3, Double.parseDouble(price));
+			preparedStmt.setDouble(3, Float.parseFloat(price));
 			preparedStmt.setString(4, desc);
 			preparedStmt.setInt(5, Integer.parseInt(ID));
 			// execute the statement
-			preparedStmt.execute();
-			con.close();
+			preparedStmt.executeUpdate();
+			con.setAutoCommit(false);
 			output = "Updated successfully";
 		}
 		catch (Exception e)
