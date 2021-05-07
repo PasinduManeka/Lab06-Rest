@@ -35,3 +35,24 @@ $(document).on("click","#btnSave",function(event){
 	$("#formStudent")[0].reset();
 		
 });
+
+//Form validation 
+function validateItemForm()
+{
+	//Name
+	if($("#txtName".val().trim()).length==""){
+		return "Enter the student name";
+	}
+	
+	//Gender
+	if($('input[name="rdoGender"]:checked').length === 0){
+		return "Select gender.";
+	}
+	
+	//year
+	if($("#ddYear").val() == "0"){
+		return "Select year.";
+	}
+	
+	return true;
+}
