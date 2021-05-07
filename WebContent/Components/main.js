@@ -1,1 +1,6 @@
-console.log("Hello world!");
+$(document).ready(function()
+{
+	$("#alertSuccess").hide();
+	$("#alertError").hide();
+});
+
