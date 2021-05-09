@@ -63,11 +63,8 @@
 		<br>
 		
 		<div class="row">
-			<div class="col-12" id="colStidents">
-				<script type="text/javascript">
-					getStudent(name,gender,year);
-				</script>
-			
+			<div class="col-12" id="colStudents">
+				
 			</div>
 		</div>
 	</div>

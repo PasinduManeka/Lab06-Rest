@@ -61,7 +61,7 @@ function validateItemForm()
 
 function getStudentCard(name, gender, year)
 {
-	var student = "";
+	
 	
 	var title = (gender=="Male")?"Mr.":"Ms.";
 	
@@ -82,6 +82,8 @@ function getStudentCard(name, gender, year)
 			break;
 	}
 	
+	var student = "";
+	
 	student += "<div class=\"student card bg-light m-2\" " +
 			"style=\"max-width:10rem; float: left;\">";
 	student += "<div class=\"card-body\">";
@@ -96,15 +98,14 @@ function getStudentCard(name, gender, year)
 }
 
 //remove button handler
-$(documnent).on("click", ".remove", function(event)
-{
+/*$(documnent).on("click", ".remove", function(event){
 	$(this).closest(".student").remove();
 	
 	$("#alertSuccess").text("Removed successfully.");
 	$("#alertSuccess").show();
 	
-})
-
+});
+*/
 
 
 
