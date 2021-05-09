@@ -59,7 +59,7 @@ function validateItemForm()
 
 //Generate the student cart
 
-function getStudent(name, gender, year)
+function getStudentCard(name, gender, year)
 {
 	var student = "";
 	
