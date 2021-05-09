@@ -23,7 +23,7 @@ $(document).on("click","#btnSave",function(event){
 			return;
 		}
 	
-	var student = etStudentCard($("#txtName").val().trim(),
+	var student = getStudentCard($("#txtName").val().trim(),
 			$('input[name="rdoGender"]:checked').val(),
 			$("#ddlyear").val());
 	

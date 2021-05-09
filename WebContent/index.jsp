@@ -31,9 +31,9 @@
 						 	<span class="input-group-text" id="lblName">Gender:</span>
 						</div>
 						&nbsp;&nbsp;Male
-						<input type="radio" id="rdoGenderMale" name="rdoGenderMale" value="Male">
+						<input type="radio" id="rdoGenderMale" name="rdoGender" value="Male">
 						&nbsp;&nbsp;Female
-						<input type="radio" id="rdoGenderFemale" name="rdoGenderFemale" value="Femails">
+						<input type="radio" id="rdoGenderFemale" name="rdoGender" value="Female">
 					</div>
 					
 					<!-- Year -->
@@ -64,6 +64,9 @@
 		
 		<div class="row">
 			<div class="col-12" id="colStidents">
+				<script type="text/javascript">
+					getStudent(name,gender,year);
+				</script>
 			
 			</div>
 		</div>
